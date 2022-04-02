@@ -12,18 +12,17 @@ import CommonCrypto
 
 extension UIView {
     var safeArea: ConstraintBasicAttributesDSL {
-            if #available(iOS 11.0, *) {
-                return self.safeAreaLayoutGuide.snp
-            } else {
-                return self.snp
-            }
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.snp
+        } else {
+            return self.snp
         }
-        
-        var safeAreaEdgesInset: UIEdgeInsets {
-            if #available(iOS 11.0, *) {
-                return self.safeAreaInsets
-            } else {
-                return UIEdgeInsets()
-            }
+    }
+    var safeAreaEdgesInset: UIEdgeInsets {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaInsets
+        } else {
+            return UIEdgeInsets()
         }
+    }
 }

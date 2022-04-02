@@ -15,10 +15,10 @@
 		C06BD38C27DCE2D200ACEC1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06BD38A27DCE2D200ACEC1A /* Main.storyboard */; };
 		C06BD38E27DCE2D400ACEC1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06BD38D27DCE2D400ACEC1A /* Assets.xcassets */; };
 		C06BD39127DCE2D400ACEC1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06BD38F27DCE2D400ACEC1A /* LaunchScreen.storyboard */; };
-		C08B8D8E27F57BA0007DCB2F /* Volidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B8D8D27F57BA0007DCB2F /* Volidation.swift */; };
+		C08B8D8E27F57BA0007DCB2F /* VolidationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B8D8D27F57BA0007DCB2F /* VolidationController.swift */; };
 		C08B8D9827F594FC007DCB2F /* NameOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B8D9727F594FC007DCB2F /* NameOne.swift */; };
-		C08B8D9C27F59818007DCB2F /* NameTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B8D9B27F59818007DCB2F /* NameTwo.swift */; };
 		C0A0041A27F46AA000B9A889 /* SefeArey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0041927F46AA000B9A889 /* SefeArey.swift */; };
+		C0F0962027F7070400D6CCF9 /* PerehodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0961F27F7070400D6CCF9 /* PerehodController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,10 +33,10 @@
 		C06BD38D27DCE2D400ACEC1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C06BD39027DCE2D400ACEC1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C06BD39227DCE2D400ACEC1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C08B8D8D27F57BA0007DCB2F /* Volidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volidation.swift; sourceTree = "<group>"; };
+		C08B8D8D27F57BA0007DCB2F /* VolidationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolidationController.swift; sourceTree = "<group>"; };
 		C08B8D9727F594FC007DCB2F /* NameOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOne.swift; sourceTree = "<group>"; };
-		C08B8D9B27F59818007DCB2F /* NameTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTwo.swift; sourceTree = "<group>"; };
 		C0A0041927F46AA000B9A889 /* SefeArey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SefeArey.swift; sourceTree = "<group>"; };
+		C0F0961F27F7070400D6CCF9 /* PerehodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerehodController.swift; sourceTree = "<group>"; };
 		F90EF15F087C71024BD4B808 /* Pods-FigmaTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FigmaTask.release.xcconfig"; path = "Target Support Files/Pods-FigmaTask/Pods-FigmaTask.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				C08B8D9727F594FC007DCB2F /* NameOne.swift */,
-				C08B8D9B27F59818007DCB2F /* NameTwo.swift */,
 			);
 			path = UserDefoulsSave;
 			sourceTree = "<group>";
@@ -100,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				C06BD38827DCE2D200ACEC1A /* ProfileController.swift */,
+				C0F0961F27F7070400D6CCF9 /* PerehodController.swift */,
 				C08B8D8F27F585A4007DCB2F /* Volidation */,
 				C0BBFADB27F4E8A700789B6C /* Utils */,
 				C0BBFADC27F4E8B900789B6C /* Setings */,
@@ -117,7 +117,7 @@
 		C08B8D8F27F585A4007DCB2F /* Volidation */ = {
 			isa = PBXGroup;
 			children = (
-				C08B8D8D27F57BA0007DCB2F /* Volidation.swift */,
+				C08B8D8D27F57BA0007DCB2F /* VolidationController.swift */,
 			);
 			path = Volidation;
 			sourceTree = "<group>";
@@ -256,10 +256,10 @@
 				C00961AD27E3647000D2A0F9 /* SetingsMainController.swift in Sources */,
 				C06BD38927DCE2D200ACEC1A /* ProfileController.swift in Sources */,
 				C08B8D9827F594FC007DCB2F /* NameOne.swift in Sources */,
-				C08B8D9C27F59818007DCB2F /* NameTwo.swift in Sources */,
-				C08B8D8E27F57BA0007DCB2F /* Volidation.swift in Sources */,
+				C08B8D8E27F57BA0007DCB2F /* VolidationController.swift in Sources */,
 				C0A0041A27F46AA000B9A889 /* SefeArey.swift in Sources */,
 				C06BD38527DCE2D200ACEC1A /* AppDelegate.swift in Sources */,
+				C0F0962027F7070400D6CCF9 /* PerehodController.swift in Sources */,
 				C06BD38727DCE2D200ACEC1A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +410,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W9CF86ZXT2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FigmaTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -438,6 +439,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W9CF86ZXT2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FigmaTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

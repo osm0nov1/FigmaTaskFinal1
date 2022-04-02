@@ -32,22 +32,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private lazy var firstNameFild: UITextField = {
         let view = UITextField()
         view.placeholder = "First Name (Required)"
-        view.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        view.font = UIFont.systemFont(ofSize: 14)
         view.layer.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.988, alpha: 1).cgColor
         view.layer.cornerRadius = 4
         view.layer.sublayerTransform = CATransform3DMakeTranslation(8, 0, 0);
-//        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFit
         view.delegate = self
         return view
     }()
     private lazy var lastNameFild: UITextField = {
         let view = UITextField()
         view.placeholder = "Last Name (Optional)"
-        view.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        view.font = UIFont.systemFont(ofSize: 14)
         view.layer.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.988, alpha: 1).cgColor
         view.layer.cornerRadius = 4
         view.layer.sublayerTransform = CATransform3DMakeTranslation(8, 0, 0);
-//        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFit
         view.delegate = self
         return view
     }()
@@ -61,11 +61,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addTarget(self, action: #selector(clickSave(view:)), for: .touchUpInside)
         return view
     }()
-    
+    private lazy var topbarView: UIView = {
+        let view = UIView()
+        return view
+    }()
     @objc func clickSave(view: UIButton) {
         
-        guard var name = firstNameFild.self.text else { return }
-        guard var lastName = lastNameFild.self.text else { return }
+        guard let name = firstNameFild.self.text else { return }
+        guard let lastName = lastNameFild.self.text else { return }
         let isValidateName = self.validation.validateName(name: name)
         if (isValidateName == false) {
             print("Incorrect Name")
@@ -90,8 +93,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         }
         navigationController?.pushViewController(Setings(), animated: true)
-        nameOne = firstNameFild.text ?? ""
-        nameTwo = lastNameFild.text ?? ""
+        UserDefaultsService.shared.nameOne = firstNameFild.text?.trimmingCharacters(in: .whitespaces) ?? ""
+        UserDefaultsService.shared.nameTwo = lastNameFild.text?.trimmingCharacters(in: .whitespaces) ?? ""
     }
     
     @objc private func keybord() {
@@ -103,12 +106,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(false)
     }
     @objc private func keyBoardWillShow(notification: NSNotification) {
-        saveButton.snp.remakeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-340)
-            make.left.equalToSuperview().offset(24)
-            make.right.equalToSuperview().offset(-24)
-            make.height.equalTo(52)
+        guard let userInfo = notification.userInfo,
+              let endFrame =
+                (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?
+            .cgRectValue else {return}
+        let keyboardHeight = endFrame.size.height
+        UIView.animate(withDuration: 0.3) {
+            self.saveButton.snp.remakeConstraints { make in
+                make.left.equalToSuperview().offset(24)
+                make.right.equalToSuperview().offset(-24)
+                make.height.equalTo(52)
+                make.bottom.equalToSuperview().offset(-keyboardHeight - 32)
+            }
+        }
+        func openKeyBoardEvent(keyBoardHeight: CGFloat) {
+            UIView.animate(withDuration: 1) {
+                self.saveButton.transform = CGAffineTransform(translationX: 0, y: keyBoardHeight * -1 + -16)
+            }
         }
     }
     @objc private func keyBoardWillHide(notification: NSNotification) {
@@ -116,47 +130,52 @@ class ViewController: UIViewController, UITextFieldDelegate {
             make.left.equalToSuperview().offset(24)
             make.right.equalToSuperview().offset(-24)
             make.height.equalTo(52)
-            make.bottom.equalToSuperview().offset(-53)
+            make.bottom.equalToSuperview().offset(-54)
         }
+        
     }
     
     var validation = Validation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameFild.text! = nameOne
-        lastNameFild.text! = nameTwo
-       
+        
+        firstNameFild.text! = UserDefaultsService.shared.nameOne
+        lastNameFild.text! = UserDefaultsService.shared.nameTwo
         keybord()
         
+        view.addSubview(topbarView)
+        topbarView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeArea.top)
+            make.left.equalToSuperview()
+            make.right.equalTo(view.safeArea.right)
+            make.height.equalTo(60)
+        }
         view.addSubview(leftButton)
         leftButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeArea.top).offset(10)
+            make.top.equalTo(topbarView.snp.top).offset(10)
             make.left.equalToSuperview().offset(24)
         }
         view.addSubview(yourProfileLebel)
         yourProfileLebel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeArea.top).offset(10)
+            make.top.equalTo(topbarView.snp.top).offset(10)
             make.left.equalTo(leftButton.snp.right).offset(16)
         }
         view.addSubview(changeAvatar)
         changeAvatar.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(145)
+            make.top.equalTo(topbarView.snp.bottom).offset(59)
             make.centerX.equalToSuperview()
         }
         view.addSubview(firstNameFild)
         firstNameFild.snp.makeConstraints { make in
             make.top.equalTo(changeAvatar.snp.bottom).offset(32)
-            make.leading.trailing.equalToSuperview().inset(24)
-            //            make.left.equalToSuperview().offset(24)
-            //            make.right.equalToSuperview().offset(-24)
+            make.left.right.equalToSuperview().inset(24)
             make.height.equalTo(36)
         }
         view.addSubview(lastNameFild)
         lastNameFild.snp.makeConstraints { make in
             make.top.equalTo(firstNameFild.snp.bottom).offset(12)
-            make.left.equalToSuperview().offset(24)
-            make.right.equalToSuperview().offset(-24)
+            make.left.right.equalToSuperview().inset(24)
             make.width.height.equalTo(36)
         }
         view.addSubview(saveButton)
@@ -164,15 +183,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
             make.left.equalToSuperview().offset(24)
             make.right.equalToSuperview().offset(-24)
             make.height.equalTo(52)
-            make.top.equalTo(lastNameFild.snp.bottom).offset(68)
+            make.bottom.equalToSuperview().offset(-54)
         }
     }
 }
 extension ViewController: UITextViewDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        firstNameFild.resignFirstResponder()
-        lastNameFild.becomeFirstResponder()
+        if textField == firstNameFild {
+            firstNameFild.resignFirstResponder()
+            lastNameFild.becomeFirstResponder()
+        } else {
+            view.endEditing(true)
+        }
         return true
     }
 }

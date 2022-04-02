@@ -34,16 +34,9 @@ class Setings: UIViewController{
         let view = UILabel()
         view.textColor = .black
         view.text = "Rashit Osmonov"
-        view.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        view.font = UIFont.systemFont(ofSize: 14)
         return view
     }()
-//    private lazy var nameFirstLebel2:  UILabel = {
-//        let view = UILabel()
-//        view.textColor = .black
-//        view.text = "Osmonov"
-//        view.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-//        return view
-//    }()
     private lazy var numberLebel:  UILabel = {
         let view = UILabel()
         view.textColor = .gray
@@ -82,7 +75,6 @@ class Setings: UIViewController{
     }()
     private lazy var chatsSetings: UIView = {
         let view = UIView()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clickSetingsChat(sender:)))
         return view
     }()
     private lazy var chats: UIButton = {
@@ -107,7 +99,6 @@ class Setings: UIViewController{
     }()
     private lazy var appereanceSetings: UIView = {
         let view = UIView()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clickSetingsAppereance(sender:)))
         return view
     }()
     private lazy var appereanceButton: UIButton = {
@@ -132,7 +123,6 @@ class Setings: UIViewController{
     }()
     private lazy var notificationSetings: UIView = {
         let view = UIView()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clickSetingsNotification(sender:)))
         return view
     }()
     private lazy var notificationButton: UIButton = {
@@ -158,7 +148,6 @@ class Setings: UIViewController{
     }()
     private lazy var privacySetings: UIView = {
         let view = UIView()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clickSetingsPrivacy(sender:)))
         return view
     }()
     
@@ -185,7 +174,6 @@ class Setings: UIViewController{
     }()
     private lazy var dataUsageSetings: UIView = {
         let view = UIView()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clickSetingsDataUsage(sender:)))
         return view
     }()
     private lazy var dataUsageButton: UIButton = {
@@ -219,7 +207,6 @@ class Setings: UIViewController{
     }()
     private lazy var helpSetings: UIView = {
         let view = UIView()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clickSetingsHelp(sender:)))
         return view
     }()
     private lazy var helpButton: UIButton = {
@@ -245,7 +232,6 @@ class Setings: UIViewController{
     }()
     private lazy var inviteSetings: UIView = {
         let view = UIView()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clickSetingsInitiv(sender:)))
         return view
     }()
     private lazy var inviteButton: UIButton = {
@@ -275,51 +261,27 @@ class Setings: UIViewController{
     
     @objc func clickAccoun(view: UIButton) {
         navigationController?.popToRootViewController(animated: true)
-        }
+    }
     
-//    }
-//
-//    @objc func clickSetingsChat(sender: UITapGestureRecognizer) {
-//        navigationController?.pushViewController(SetingChats(), animated: true)
-//    }
-//    @objc func clickSetingsAppereance(sender: UITapGestureRecognizer) {
-//        navigationController?.pushViewController(SetingsAppereance(), animated: true)
-//    }
-//    @objc func clickSetingsNotification(sender: UITapGestureRecognizer) {
-//        navigationController?.pushViewController(SetingsNotification(), animated: true)
-//    }
-//    @objc func clickSetingsPrivacy(sender: UITapGestureRecognizer) {
-//        navigationController?.pushViewController(SetingsPrivacy(), animated: true)
-//    }
-//    @objc func clickSetingsDataUsage(sender: UITapGestureRecognizer) {
-//        navigationController?.pushViewController(SetingsDataUsage(), animated: true)
-//    }
-//    @objc func clickSetingsHelp(sender: UITapGestureRecognizer) {
-//        navigationController?.pushViewController(SetingsHelp(), animated: true)
-//    }
-//    @objc func clickSetingsInitiv(sender: UITapGestureRecognizer) {
-//        navigationController?.pushViewController(SetingsInviteYourFriends(), animated: true)
-//    }
-//
     
     override func viewDidLoad() {
-//        nameFirstLebel.text ?? ""
-        nameFirstLebel.text = nameOne + " " + nameTwo
+                nameFirstLebel.text = "\(UserDefaultsService.shared.nameOne) \(UserDefaultsService.shared.nameTwo)"
         
-       
+        
         
         view.backgroundColor = .white
         
         view.addSubview(moreLebel)
         moreLebel.snp.makeConstraints { make in
             make.top.equalTo(view.safeArea.top).offset(10)
-            make.left.equalToSuperview().offset(26)
+            make.left.equalToSuperview().offset(24)
         }
         view.addSubview(viewSetings)
         viewSetings.snp.makeConstraints { make in
             make.width.equalTo(400)
             make.height.equalTo(66)
             make.top.equalTo(moreLebel.snp.bottom).offset(29)
+            make.leading.trailing.equalToSuperview()
         }
         
         viewSetings.addSubview(profile)
@@ -333,11 +295,6 @@ class Setings: UIViewController{
             make.top.equalToSuperview().offset(10)
             make.left.equalTo(profile.snp.right).offset(20)
         }
-//        viewSetings.addSubview(nameFirstLebel2)
-//        nameFirstLebel2.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(10)
-//            make.left.equalTo(nameFirstLebel.snp.right).offset(3)
-//        }
         viewSetings.addSubview(numberLebel)
         numberLebel.snp.makeConstraints { make in
             make.top.equalTo(nameFirstLebel.snp.bottom).offset(9)
@@ -346,13 +303,14 @@ class Setings: UIViewController{
         viewSetings.addSubview(rigthButton)
         rigthButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(-43)
+            make.right.equalToSuperview().offset(-24)
         }
         view.addSubview(accountSetings)
         accountSetings.snp.makeConstraints { make in
             make.width.equalTo(400)
             make.height.equalTo(50)
             make.top.equalTo(viewSetings.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview()
         }
         accountSetings.addSubview(acountButton)
         acountButton.snp.makeConstraints { make in
@@ -367,13 +325,14 @@ class Setings: UIViewController{
         accountSetings.addSubview(acountButtonRigth)
         acountButtonRigth.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(14)
-            make.right.equalToSuperview().offset(-43)
+            make.right.equalToSuperview().offset(-24)
         }
         view.addSubview(chatsSetings)
         chatsSetings.snp.makeConstraints { make in
             make.width.equalTo(400)
             make.height.equalTo(50)
             make.top.equalTo(accountSetings.snp.bottom)
+            make.leading.trailing.equalToSuperview()
         }
         chatsSetings.addSubview(chats)
         chats.snp.makeConstraints { make in
@@ -388,13 +347,14 @@ class Setings: UIViewController{
         chatsSetings.addSubview(chatsButtonRigth)
         chatsButtonRigth.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(14)
-            make.right.equalToSuperview().offset(-43)
+            make.right.equalToSuperview().offset(-24)
         }
         view.addSubview(appereanceSetings)
         appereanceSetings.snp.makeConstraints { make in
             make.width.equalTo(400)
             make.height.equalTo(50)
             make.top.equalTo(chatsSetings.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview()
         }
         appereanceSetings.addSubview(appereanceButton)
         appereanceButton.snp.makeConstraints { make in
@@ -409,13 +369,14 @@ class Setings: UIViewController{
         appereanceSetings.addSubview(appereanceButtonRigth)
         appereanceButtonRigth.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(18)
-            make.right.equalToSuperview().offset(-43)
+            make.right.equalToSuperview().offset(-24)
         }
         view.addSubview(notificationSetings)
         notificationSetings.snp.makeConstraints { make in
             make.width.equalTo(400)
             make.height.equalTo(50)
             make.top.equalTo(appereanceSetings.snp.bottom)
+            make.leading.trailing.equalToSuperview()
         }
         notificationSetings.addSubview(notificationButton)
         notificationButton.snp.makeConstraints { make in
@@ -430,18 +391,20 @@ class Setings: UIViewController{
         notificationSetings.addSubview(notificationButtonRigth)
         notificationButtonRigth.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(18)
-            make.right.equalToSuperview().offset(-45)
+            make.right.equalToSuperview().offset(-24)
         }
         view.addSubview(privacySetings)
         privacySetings.snp.makeConstraints { make in
             make.width.equalTo(400)
             make.height.equalTo(50)
             make.top.equalTo(notificationSetings.snp.bottom)
+            make.leading.trailing.equalToSuperview()
         }
         privacySetings.addSubview(privacyButton)
         privacyButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(18)
             make.left.equalToSuperview().offset(19)
+            
         }
         privacySetings.addSubview(privacyLebel)
         privacyLebel.snp.makeConstraints { make in
@@ -451,13 +414,14 @@ class Setings: UIViewController{
         privacySetings.addSubview(privacyButtonRigth)
         privacyButtonRigth.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(18)
-            make.right.equalToSuperview().offset(-43)
+            make.right.equalToSuperview().offset(-24)
         }
         view.addSubview(dataUsageSetings)
         dataUsageSetings.snp.makeConstraints { make in
             make.width.equalTo(400)
             make.height.equalTo(50)
             make.top.equalTo(privacySetings.snp.bottom)
+            make.leading.trailing.equalToSuperview()
         }
         dataUsageSetings.addSubview(dataUsageButton)
         dataUsageButton.snp.makeConstraints { make in
@@ -472,7 +436,7 @@ class Setings: UIViewController{
         dataUsageSetings.addSubview(dataUsageButtonRigth)
         dataUsageButtonRigth.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(17)
-            make.right.equalToSuperview().offset(-43)
+            make.right.equalToSuperview().offset(-24)
         }
         view.addSubview(viewStroke)
         viewStroke.snp.makeConstraints { make in
@@ -486,6 +450,7 @@ class Setings: UIViewController{
             make.width.equalTo(400)
             make.height.equalTo(50)
             make.top.equalTo(viewStroke.snp.bottom).offset(18)
+            make.leading.trailing.equalToSuperview()
         }
         helpSetings.addSubview(helpButton)
         helpButton.snp.makeConstraints { make in
@@ -500,13 +465,14 @@ class Setings: UIViewController{
         helpSetings.addSubview(helpButtonRigth)
         helpButtonRigth.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(18)
-            make.right.equalToSuperview().offset(-43)
+            make.right.equalToSuperview().offset(-24)
         }
         view.addSubview(inviteSetings)
         inviteSetings.snp.makeConstraints { make in
             make.width.equalTo(400)
             make.height.equalTo(50)
             make.top.equalTo(helpSetings.snp.bottom)
+            make.leading.trailing.equalToSuperview()
         }
         inviteSetings.addSubview(inviteButton)
         inviteButton.snp.makeConstraints { make in
@@ -521,16 +487,7 @@ class Setings: UIViewController{
         inviteSetings.addSubview(inviteButtonRigth)
         inviteButtonRigth.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(17)
-            make.right.equalToSuperview().offset(-43)
+            make.right.equalToSuperview().offset(-24)
         }
     }
 }
-
-//extension UIView {
-//  func addTapGesture(tapNumber: Int, target: Any, action: Selector) {
-//    let tap = UITapGestureRecognizer(target: target, action: action)
-//    tap.numberOfTapsRequired = tapNumber
-//    addGestureRecognizer(tap)
-//    isUserInteractionEnabled = true
-//  }
-//}
